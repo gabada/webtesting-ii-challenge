@@ -22,11 +22,19 @@ class Dashboard extends Component {
   }
 
   ball = () => {
-    this.setState({ balls: 'Hello Web XVII' });
+    if (this.state.balls >= 3) {
+      this.setState({ ...this.state.balls, balls: 0 });
+    } else {
+      this.setState({ ...this.state.balls, balls: this.state.balls + 1 });
+    }
   };
 
   foul = () => {
-    this.setState({ greeting: 'Bye Web XVII' });
+    if (this.state.strikes < 2) {
+      this.setState({ ...this.state.strikes, strikes: this.state.strikes + 1 });
+    } else {
+      this.setState({ ...this.state.strikes, strikes: this.state.strikes });
+    }
   };
 
   hit = () => {
@@ -39,7 +47,19 @@ class Dashboard extends Component {
   };
 
   strike = () => {
-    this.setState({ greeting: 'Bye Web XVII' });
+    if (this.state.strikes >= 2) {
+      this.setState({
+        ...this.state.strikes,
+        strikes: 0,
+        ...this.state.balls,
+        balls: 0
+      });
+    } else {
+      this.setState({
+        ...this.state.strikes,
+        strikes: this.state.strikes + 1
+      });
+    }
   };
 }
 
